@@ -1,6 +1,7 @@
 ﻿using codePulse.API.Data;
 using codePulse.API.Models.Domain;
 using codePulse.API.Models.DTO;
+using codePulse.API.Repositories.Interface;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,13 +12,13 @@ namespace codePulse.API.Controllers
     [ApiController]
     public class CategoriesController : ControllerBase
     {
-        private readonly ApplicationDbContext dbContext;
+        private readonly ICategoryRepository categoryRepository;
 
-        public CategoriesController(ApplicationDbContext dbContext)
+        public CategoriesController(ICategoryRepository categoryRepository)
         {
-            this.dbContext = dbContext;
+            this.categoryRepository = categoryRepository;
         }
-        //
+        
         [HttpPost]
         public async Task<IActionResult> CreateCategory(CreateCategoryRequestDto request)
         {
@@ -28,8 +29,7 @@ namespace codePulse.API.Controllers
                 UrlHandle = request.UrlHandle,
             };
 
-            await dbContext.Categories.AddAsync(category);
-            await dbContext.SaveChangesAsync();
+            await categoryRepository.CreateAsync(category);
 
             //Domain model to DTO
             var response = new CategoryDto
