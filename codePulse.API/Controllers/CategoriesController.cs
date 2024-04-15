@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace codePulse.API.Controllers
 {
+    //checking git
     //https://localhost:xxxx/api/categories
     [Route("api/[controller]")]
     [ApiController]
