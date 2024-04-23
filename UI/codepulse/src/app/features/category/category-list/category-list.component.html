@@ -3,7 +3,7 @@
     <div class="d-flex justify-content-end mt-3">
         <a [routerLink]="['/admin/categories/add']" class="btn btn-primary">Add Category</a>
     </div>
-    <ng-container *ngIf="categories">
+    <ng-container *ngIf="categories$ | async as categories">
         <table class="table table-bordered mt-3">
             <thead>
                 <tr>
