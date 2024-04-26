@@ -102,5 +102,25 @@ namespace codePulse.API.Controllers
             { Id = category.Id, Name = category.Name, UrlHandle = category.UrlHandle };
             return Ok(response);
         }
+
+        //DELETE  https://localhost:7214/api/Categories/{id}
+        [HttpDelete]
+        [Route("{id:Guid}")]
+        public async Task<IActionResult> DeleteCategory([FromRoute] Guid id)
+        {
+            var category = await categoryRepository.DeleteAsync(id);
+            if(category is null)
+            {
+                return NotFound();
+            }
+            //convert domain model to DTO
+            var response = new CategoryDto
+            {
+                Id = category.Id,
+                Name = category.Name,
+                UrlHandle = category.UrlHandle,
+            };
+            return Ok(response);
+        }
     }
 }
