@@ -1,6 +1,6 @@
-﻿namespace codePulse.API.Models.Domain
+﻿namespace codePulse.API.Models.DTO
 {
-    public class BlogPost
+    public class BlogPostDto
     {
         public Guid Id { get; set; }
         public string Title { get; set; }
