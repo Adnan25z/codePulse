@@ -25,7 +25,7 @@ namespace codePulse.API.Controllers
                 Author = request.Author,
                 Content = request.Content,
                 FeaturedImageUrl = request.FeaturedImageUrl,
-                isVisible = request.isVisible,
+                IsVisible = request.isVisible,
                 PublishedDate = request.PublishedDate,
                 ShortDescription = request.ShortDescription,
                 Title = request.Title,
@@ -37,15 +37,42 @@ namespace codePulse.API.Controllers
             var response = new BlogPostDto
             {
                 Id = blogPost.Id,
-                Author = request.Author,
-                Content = request.Content,
-                FeaturedImageUrl = request.FeaturedImageUrl,
-                isVisible = request.isVisible,
-                PublishedDate = request.PublishedDate,
-                ShortDescription = request.ShortDescription,
-                Title = request.Title,
-                UrlHandle = request.UrlHandle
+                Author = blogPost.Author,
+                Content = blogPost.Content,
+                FeaturedImageUrl = blogPost.FeaturedImageUrl,
+                IsVisible = blogPost.IsVisible,
+                PublishedDate = blogPost.PublishedDate,
+                ShortDescription = blogPost.ShortDescription,
+                Title = blogPost.Title,
+                UrlHandle = blogPost.UrlHandle,   
             };
+            return Ok(response);
+        }
+
+        // GET: {apibaseurl}/api/blogposts
+        [HttpGet]
+        public async Task<IActionResult> GetAllBlogPosts()
+        {
+            var blogPosts = await blogPostRepository.GetAllAsync();
+
+            // Convert Domain model to DTO
+            var response = new List<BlogPostDto>();
+            foreach (var blogPost in blogPosts)
+            {
+                response.Add(new BlogPostDto
+                {
+                    Id = blogPost.Id,
+                    Author = blogPost.Author,
+                    Content = blogPost.Content,
+                    FeaturedImageUrl = blogPost.FeaturedImageUrl,
+                    IsVisible=blogPost.IsVisible,
+                    PublishedDate = blogPost.PublishedDate,
+                    ShortDescription = blogPost.ShortDescription,
+                    Title = blogPost.Title,
+                    UrlHandle = blogPost.UrlHandle
+                });
+            }
+
             return Ok(response);
         }
     }
