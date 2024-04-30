@@ -1,6 +1,7 @@
 # codePulse
 
 ## Overview
+
 `codePulse` is a full-stack web application tailored for blog management, demonstrating robust features such as authentication, authorization, live markdown previews, and full CRUD capabilities. The frontend is developed with Angular, providing a rich, single-page application experience, while the backend is an ASP.NET Core Web API, offering a solid RESTful service.
 
 ## Repository Structure
@@ -8,7 +9,6 @@
 - `UI/codepulse`: Contains the Angular application for the frontend.
 - `codePulse.API`: Houses the ASP.NET Core Web API for backend services.
 - `codePulse.API.sln`: The solution file for the .NET Core API project.
-
 
 ## Technologies Used
 
@@ -40,7 +40,6 @@
 ### Installation
 
 To get started with CodePulse, follow these steps:
-
 ```bash
 # Clone the repository
 git clone https://github.com/Adnan25z/CodePulse.git
@@ -56,13 +55,18 @@ dotnet restore
 dotnet run
 # The API will be available as specified in its launch settings, typically http://localhost:<port>/.
 ```
+
 ## Usage
+
 ### Angular Application
+
 - Navigate to http://localhost:4200/ to view and manage the blog.
 - Utilize Angular forms to submit and manage blog posts.
 - Use the live markdown preview to see changes as you create or edit posts.
 - Upload images to be included in blog posts.
+- 
 ### ASP.NET Core Web API 
+
 The backend API supports:
 - RESTful endpoints for managing blog posts and categories.
 - Authentication and authorization mechanisms.
@@ -70,11 +74,13 @@ The backend API supports:
 - Integration with Entity Framework Core for database operations.
 
 ## Testing
+
 ### Frontend Testing
+
 Run unit tests in the Angular application with the following command:
 ```bash
 ng test
 ```
 
 ### Backend Testing
-Utilize Swagger by navigating to http://localhost:<port>/swagger to test the API endpoints manually or automate tests using Postman.
+Utilize Swagger by navigating to http://localhost:[port]/swagger to test the API endpoints manually or automate tests using Postman.
