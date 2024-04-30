@@ -64,7 +64,7 @@ dotnet run
 - Utilize Angular forms to submit and manage blog posts.
 - Use the live markdown preview to see changes as you create or edit posts.
 - Upload images to be included in blog posts.
-- 
+  
 ### ASP.NET Core Web API 
 
 The backend API supports:
