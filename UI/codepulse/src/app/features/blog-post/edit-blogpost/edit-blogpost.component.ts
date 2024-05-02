@@ -1,6 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { BlogPostService } from '../services/blog-post.service';
+import { BlogPost } from '../models/blog-post.model';
 
 @Component({
   selector: 'app-edit-blogpost',
@@ -9,9 +11,11 @@ import { Subscription } from 'rxjs';
 })
 export class EditBlogpostComponent implements OnInit, OnDestroy{
   id: string | null = null;
+  model?: BlogPost;
   routeSubscription?: Subscription;
 
-  constructor(private route: ActivatedRoute){
+
+  constructor(private route: ActivatedRoute, private blogPostService: BlogPostService){
 
   }
   
@@ -19,8 +23,21 @@ export class EditBlogpostComponent implements OnInit, OnDestroy{
     this.routeSubscription = this.route.paramMap.subscribe({
       next: (params) => {
         this.id = params.get('id');
+
+        //get blogpost from api
+        if(this.id){
+          this.blogPostService.getBlogPostById(this.id).subscribe({
+            next: (response) => {
+              this.model = response;
+            }
+          })
+        }
+        
       }
     })
+  }
+  onFormSubmit(): void {
+    
   }
 
   ngOnDestroy(): void {
