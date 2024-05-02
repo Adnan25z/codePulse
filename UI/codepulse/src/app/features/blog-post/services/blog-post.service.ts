@@ -24,10 +24,14 @@ export class BlogPostService {
   }
 
   getBlogPostById(id: string): Observable<BlogPost>{
-    return this.http.get<BlogPost>(`${environment.apiBaseUrl}/api/blogposts/${id}` );
+    return this.http.get<BlogPost>(`${environment.apiBaseUrl}/api/blogposts/${id}`);
   }
 
   updateBlogPost(id: string, updatedBlogPost: UpdateBlogPost): Observable<BlogPost>{
     return this.http.put<BlogPost>(`${environment.apiBaseUrl}/api/blogposts/${id}`, updatedBlogPost);
+  }
+
+  deleteBlogPost(id: string) : Observable<BlogPost>{
+    return this.http.delete<BlogPost>(`${environment.apiBaseUrl}/api/blogposts/${id}`);
   }
 }
