@@ -24,6 +24,7 @@ export class AddBlogpostComponent implements OnInit{
       author: '',
       isVisible: true,
       publishedDate: new Date(),
+      categories: []
     }
   }
   ngOnInit(): void {
@@ -31,6 +32,7 @@ export class AddBlogpostComponent implements OnInit{
   }
 
   onFormSubmit(): void {
+    console.log(this.model);
     this.blogPostService.createBlogPost(this.model)
     .subscribe({
       next: (response) => {
