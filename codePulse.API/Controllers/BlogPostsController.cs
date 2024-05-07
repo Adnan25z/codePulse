@@ -102,7 +102,7 @@ namespace codePulse.API.Controllers
 
         // GET: {apibaseurl}/api/blogposts/{id}
         [HttpGet]
-        [Route("{id= guid}")]
+        [Route("{id: Guid}")]
         public async Task<IActionResult> GetBlogPostbyId([FromRoute] Guid id)
         {
             //Get the blogpost from repo
@@ -136,7 +136,7 @@ namespace codePulse.API.Controllers
 
         // GET: {apibaseurl}/api/blogPosts/{urlhandle}
         [HttpGet]
-        [Route("handle/{urlHandle}")]
+        [Route("{urlHandle}")]
         public async Task<IActionResult> GetBlogPostByUrlHandle([FromRoute] string urlHandle)
         {
             // Get blogpost details from repository
@@ -172,7 +172,7 @@ namespace codePulse.API.Controllers
 
         //PUT: {apibaseurl}/api/blogposts/{id}
         [HttpPut]
-        [Route("{id=Guid}")]
+        [Route("{id:Guid}")]
         public async Task<IActionResult> UpdateBlogPostById([FromRoute] Guid id, UpdateBlogPostRequestDto request)
         {
             //convert from dto to domain model
@@ -230,7 +230,7 @@ namespace codePulse.API.Controllers
 
         //DELETE: {apibaseurl}/api/blogposts/{id}
         [HttpDelete]
-        [Route("{id=Guid}")]
+        [Route("{id:Guid}")]
         public async Task<IActionResult> DeleteBlogPost([FromRoute] Guid id)
         {
             var deletedBlogPost = await blogPostRepository.DeleteAsync(id);
