@@ -2,6 +2,7 @@
 using codePulse.API.Models.Domain;
 using codePulse.API.Models.DTO;
 using codePulse.API.Repositories.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
