@@ -3,6 +3,7 @@ using codePulse.API.Models.DTO;
 using codePulse.API.Repositories.Interface;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 
 namespace codePulse.API.Controllers
 {
@@ -22,6 +23,7 @@ namespace codePulse.API.Controllers
 
         // POST: {apibaseurl}/api/blogposts
         [HttpPost]
+        [Authorize(Roles = "Writer")]
         public async Task<IActionResult> CreateBlogPost([FromBody] CreateBlogPostRequestDto request)
         {
             // Convert DTO to DOmain
@@ -104,7 +106,6 @@ namespace codePulse.API.Controllers
             return Ok(response);
         }
 
-
         // GET: {apiBaseUrl}/api/blogposts/{id}
         [HttpGet]
         [Route("{id:Guid}")]
@@ -179,6 +180,7 @@ namespace codePulse.API.Controllers
         // PUT: {apibaseurl}/api/blogposts/{id}
         [HttpPut]
         [Route("{id:Guid}")]
+        [Authorize(Roles = "Writer")]
         public async Task<IActionResult> UpdateBlogPostById([FromRoute] Guid id, UpdateBlogPostRequestDto request)
         {
             // Convert DTO to Domain Model
@@ -238,6 +240,7 @@ namespace codePulse.API.Controllers
         // DELETE: {apibaseurl}/api/blogposts/{id}
         [HttpDelete]
         [Route("{id:Guid}")]
+        [Authorize(Roles = "Writer")]
         public async Task<IActionResult> DeleteBlogPost([FromRoute] Guid id)
         {
             var deletedBlogPost = await blogPostRepository.DeleteAsync(id);
