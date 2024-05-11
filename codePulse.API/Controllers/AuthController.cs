@@ -1,4 +1,5 @@
 ﻿using codePulse.API.Models.DTO;
+using codePulse.API.Repositories.Interface;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -10,10 +11,13 @@ namespace codePulse.API.Controllers
     public class AuthController : ControllerBase
     {
         private readonly UserManager<IdentityUser> userManager;
+        private readonly ITokenRepository tokenRepository;
 
-        public AuthController(UserManager<IdentityUser> userManager)
+        public AuthController(UserManager<IdentityUser> userManager,
+            ITokenRepository tokenRepository)
         {
             this.userManager = userManager;
+            this.tokenRepository = tokenRepository;
         }
 
         //POST: {apibaseurl}/api/auth/login
@@ -30,11 +34,13 @@ namespace codePulse.API.Controllers
                 {
                     var roles = await userManager.GetRolesAsync(identityUser);
                     //Create a Token and Response
+                    var jwtToken = tokenRepository.CreateJwtToken(identityUser, roles.ToList());
+
                     var response = new LoginResponseDto()
                     {
                         Email = request.Email,
                         Roles = roles.ToList(),
-                        Token = "TOKEN"
+                        Token = jwtToken
                     };
                     return Ok(response);
                 }
