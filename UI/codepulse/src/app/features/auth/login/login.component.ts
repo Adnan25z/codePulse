@@ -27,10 +27,15 @@ export class LoginComponent {
       next: (response) => {
         // Set Auth Cookie
         this.cookieService.set('Authorization', `Bearer ${response.token}`,
-          undefined, '/', undefined, true, 'Strict');
+        undefined, '/', undefined, true, 'Strict');
 
-          // Redirect back to Home
-          this.router.navigateByUrl('/');
+        this.authService.setUser({
+          email: response.email,
+          roles: response.roles
+        });
+
+        // Redirect back to Home
+        this.router.navigateByUrl('/');
       }
     });
   }
