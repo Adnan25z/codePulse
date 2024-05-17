@@ -12,7 +12,21 @@
             <thead>
                 <tr>
                     <th>Id</th>
-                    <th>Name</th>
+                    <th>
+                        Name
+                        <span>
+                            <span>
+                                <button type="button" class="btn btn-light" (click)="sort('name', 'asc')">
+                                    <i class="bi bi-arrow-up"></i>
+                                </button>
+                            </span>
+                            <span>
+                                <button type="button" class="btn btn-light" (click)="sort('name', 'desc')">
+                                    <i class="bi bi-arrow-down"></i>
+                                </button>
+                            </span>
+                        </span>
+                    </th>
                     <th>Url Handle</th>
                     <th> </th>
                 </tr>
