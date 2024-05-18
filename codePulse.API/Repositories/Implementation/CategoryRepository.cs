@@ -33,7 +33,8 @@ namespace codePulse.API.Repositories.Implementation
         }
 
         public async Task<IEnumerable<Category>> GetAllAsync(string? query = null,
-            string? sortBy = null, string? sortDirection = null)
+            string? sortBy = null, string? sortDirection = null,
+            int? pageNumber = 1, int? pageSize=100 )
         {
             // Query the Database
             var categories = dbContext.Categories.AsQueryable();
@@ -54,10 +55,13 @@ namespace codePulse.API.Repositories.Implementation
                 }
             }
 
-                // Pagination
+            // Pagination
+            //Page 1 pageSize 5 - skip 0, take 5
+            var skipResults = (pageNumber -1) * pageSize;
+            categories = categories.Skip(skipResults ?? 0).Take(pageSize ?? 100);
 
 
-                return await categories.ToListAsync();
+            return await categories.ToListAsync();
         }
 
         public async Task<Category?> GetById(Guid id)
