@@ -3,6 +3,7 @@
 ## Overview
 
 `codePulse` is a full-stack web application tailored for blog management, demonstrating features such as authentication, authorization, live markdown previews, and full CRUD capabilities. The frontend is developed with Angular, providing a rich, single-page application experience, while the backend is an ASP.NET Core Web API, offering a solid RESTful service.
+<br />
 ![Game Screenshot](codepulse.jpg)
 
 ## Repository Structure
